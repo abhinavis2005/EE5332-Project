@@ -18,6 +18,9 @@ int main() {
         if (arr[i] > arr[i + 1]) { pass = 0; break; }
     }
 
-    std::cout << (pass ? "PASS" : "FAIL") << std::endl;
+    if (pass)
+        std::cout << "PASS" << std::endl;
+    else
+        std::cout << "\033[31mFAIL\033[0m" << std::endl;
     return pass ? 0 : 1;
 }
