@@ -1,0 +1,6 @@
+*.bit
+*.hwh
+build/
+vivado/
+**/hls_bitonic_sort
+**/*.log
