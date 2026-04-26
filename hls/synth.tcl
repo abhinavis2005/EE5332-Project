@@ -1,5 +1,5 @@
 set PART     "xc7z020clg400-1"
-set CLOCK_NS "10"
+set CLOCK_NS "15"
 set TOP      "sort_top"
 set PROJ     "hls_bitonic_sort"
 set SRC_DIR  [expr {[info exists env(HLS_SRC_DIR)] ? $env(HLS_SRC_DIR) : "../src"}]

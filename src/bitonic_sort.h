@@ -26,13 +26,7 @@ inline index_t ceil_log2(index_t n) {
   return k;
 }
 
-inline void compare_and_swap(data_t &a, data_t &b, int dir) {
-  if ((a > b) == dir) {
-    data_t t = a;
-    a = b;
-    b = t;
-  }
-}
+void compare_and_swap(data_t &a, data_t &b, int dir);
 
 void bitonic_sort(index_t padded_n, data_t arr[]);
 
