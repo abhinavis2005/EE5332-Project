@@ -20,7 +20,6 @@ LOOP1:
     LOOP3:
       for (int i = 0; i < MAX_N; i++) {
 #pragma HLS UNROLL
-#pragma HLS PIPELINE II = 1
 #pragma HLS LOOP_TRIPCOUNT min = 2 max = 256 avg = 128
         int l = i ^ j;
         if (l > i) {
