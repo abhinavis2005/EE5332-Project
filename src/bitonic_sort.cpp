@@ -11,20 +11,25 @@ void compare_and_swap(data_t &a, data_t &b, int dir) {
 
 void bitonic_sort(data_t arr[N]) {
 #pragma HLS INLINE
+
 LOOP_K:
-  for (int k = 2; k <= N; k *= 2) {
-#pragma HLS PIPELINE II = 1
+  for (int k = 2; k <= N; k <<= 1) {
+
   LOOP_J:
-    for (int j = k / 2; j > 0; j /= 2) {
-#pragma HLS PIPELINE II = 1
-    LOOP_I:
-      for (int i = 0; i < N; i++) {
-#pragma HLS UNROLL factor = 16
-        int l = i ^ j;
-        if (l > i) {
-          int dir = (i & k) == 0;
-          compare_and_swap(arr[i], arr[l], dir);
-        }
+    for (int j = k >> 1; j > 0; j >>= 1) {
+
+    LOOP_P:
+      for (int p = 0; p < N / 2; p++) {
+#pragma HLS PIPELINE II=1
+#pragma HLS UNROLL factor=16
+
+        int low  = p & (j - 1);
+        int high = p - low;
+        int i    = (high << 1) + low;
+        int l    = i + j;
+
+        int dir = ((i & k) == 0);
+        compare_and_swap(arr[i], arr[l], dir);
       }
     }
   }
