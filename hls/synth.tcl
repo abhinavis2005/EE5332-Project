@@ -17,6 +17,6 @@ csynth_design
 
 export_design -format ip_catalog \
   -description "Bitonic Sort IP" \
-  -vendor "EE5332" -library "hls" -version "1.0"
+  -vendor "ee5332" -library "hls" -version "1.0"
 
 exit
