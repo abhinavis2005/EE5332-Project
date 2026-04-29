@@ -26,7 +26,7 @@ apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 \
 # via DMA and sets FCKL0 (clock output from PS to the PL)
 set_property -dict [list \
     CONFIG.PCW_USE_S_AXI_HP0 {1} \
-    CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100} \
+    CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {66} \
 ] [get_bd_cells ps7]
 
 

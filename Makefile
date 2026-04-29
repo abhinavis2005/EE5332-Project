@@ -15,8 +15,10 @@ sim: $(BIN)
 $(BIN): $(SRC) $(TB)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+SOL ?= sol1
+
 synth:
-	cd hls && vitis_hls -f synth.tcl
+	cd hls && SOL=$(SOL) vitis_hls -f synth.tcl
 
 clean:
 	rm -f $(BIN)

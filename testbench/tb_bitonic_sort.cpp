@@ -8,27 +8,22 @@
 typedef ap_axis<32, 1, 1, 1> axis_pkt_t;
 
 void sort_top(hls::stream<axis_pkt_t> &in_stream,
-              hls::stream<axis_pkt_t> &out_stream, ap_uint<8> N);
+              hls::stream<axis_pkt_t> &out_stream,
+              ap_uint<1> &flag_post_dma,
+              ap_uint<1> &flag_post_sort);
 
 int main() {
-  const ap_uint<8> N = 8;
-  data_t in[MAX_N];
+  data_t in[N];
 
   for (int i = 0; i < N; i++)
-    in[i] = rand() % 100;
+    in[i] = rand() % 1000;
 
   hls::stream<axis_pkt_t> in_stream("in");
   hls::stream<axis_pkt_t> out_stream("out");
 
-  union {
-    data_t data;
-    unsigned u;
-  } conv;
-
   for (int i = 0; i < N; i++) {
     axis_pkt_t pkt;
-    conv.data = in[i];
-    pkt.data = (ap_int<32>)conv.u;
+    pkt.data = (ap_int<32>)(ap_uint<32>)in[i];
     pkt.keep = -1;
     pkt.strb = -1;
     pkt.user = 0;
@@ -38,41 +33,40 @@ int main() {
     in_stream.write(pkt);
   }
 
-  sort_top(in_stream, out_stream, N);
+  ap_uint<1> flag_post_dma, flag_post_sort;
+  sort_top(in_stream, out_stream, flag_post_dma, flag_post_sort);
 
-  data_t out[MAX_N];
+  data_t out[N];
   for (int i = 0; i < N; i++) {
     axis_pkt_t pkt = out_stream.read();
-    conv.u = (unsigned)(ap_uint<32>)pkt.data;
-    out[i] = conv.data;
+    out[i] = (data_t)(ap_uint<32>)pkt.data;
   }
 
-  data_t expected[MAX_N];
+  data_t expected[N];
   for (int i = 0; i < N; i++)
     expected[i] = in[i];
   std::sort(expected, expected + N);
 
-  int pass = 1;
+  bool pass = true;
   for (int i = 0; i < N; i++) {
     if (out[i] != expected[i]) {
-      pass = 0;
+      pass = false;
       break;
     }
   }
 
-  std::cout << "Input:  ";
-  for (int i = 0; i < N; i++)
-    std::cout << in[i] << " ";
-  std::cout << std::endl;
-  std::cout << "Output: ";
-  for (int i = 0; i < N; i++)
-    std::cout << out[i] << " ";
-  std::cout << std::endl;
+  std::cout << "Input:    ";
+  for (int i = 0; i < N; i++) std::cout << in[i] << " ";
+  std::cout << "\nOutput:   ";
+  for (int i = 0; i < N; i++) std::cout << out[i] << " ";
+  std::cout << "\nExpected: ";
+  for (int i = 0; i < N; i++) std::cout << expected[i] << " ";
+  std::cout << "\n";
 
-  if (pass) {
-    std::cout << "\033[32mPASS\033[0m" << std::endl;
-  } else {
-    std::cout << "\033[31mFAIL\033[0m" << std::endl;
-  }
+  if (pass)
+    std::cout << "\033[32mPASS\033[0m\n";
+  else
+    std::cout << "\033[31mFAIL\033[0m\n";
+
   return pass ? 0 : 1;
 }
