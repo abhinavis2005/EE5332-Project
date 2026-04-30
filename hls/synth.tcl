@@ -6,7 +6,7 @@ set SRC_DIR  [expr {[info exists env(HLS_SRC_DIR)] ? $env(HLS_SRC_DIR) : "../src
 
 open_project ${PROJ} -reset ;# reset the project and synthesize from scratch
 set_top ${TOP}
-add_files [glob ${SRC_DIR}/*.cpp]
+add_files [glob ${SRC_DIR}/*.cpp] -cflags "-std=c++17"
 
 set SOL [expr {[info exists env(SOL)] ? $env(SOL) : "sol1"}]
 open_solution ${SOL} -flow_target vivado -reset
