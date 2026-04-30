@@ -7,10 +7,14 @@ void bitonic_pass(data_t in[N], data_t out[N]) {
 #pragma HLS UNROLL 
     int l = i ^ J;
     if (l > i) {
-      bool dir = (i & K) == 0;
-      bool do_swap = (in[i] > in[l]) ^ dir;
-      out[i] = do_swap ? in[l] : in[i];
-      out[l] = do_swap ? in[i] : in[l];
+      int dir = (i & K) == 0;
+      if ((in[i] > in[l]) == dir) {
+        out[i] = in[l];
+        out[l] = in[i];
+      } else {
+        out[i] = in[i];
+        out[l] = in[l];
+      }
     }
   }
 }
