@@ -8,7 +8,8 @@ open_project ${PROJ} -reset ;# reset the project and synthesize from scratch
 set_top ${TOP}
 add_files [glob ${SRC_DIR}/*.cpp]
 
-open_solution "sol1" -flow_target vivado -reset
+set SOL [expr {[info exists env(SOL)] ? $env(SOL) : "sol1"}]
+open_solution ${SOL} -flow_target vivado -reset
 set_part ${PART}
 
 create_clock -period ${CLOCK_NS} -name default

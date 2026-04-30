@@ -1,29 +1,16 @@
 #include "bitonic_sort.h"
 
-void compare_and_swap(data_t &a, data_t &b, int dir) {
-#pragma HLS INLINE
-  if ((a > b) == dir) {
-    data_t t = a;
-    a = b;
-    b = t;
-  }
-}
-
 template <int J, int K>
 void bitonic_pass(data_t in[N], data_t out[N]) {
 #pragma HLS INLINE
   for (int i = 0; i < N; i++) {
-#pragma HLS UNROLL
+#pragma HLS UNROLL 
     int l = i ^ J;
     if (l > i) {
-      int dir = (i & K) == 0;
-      if ((in[i] > in[l]) == dir) {
-        out[i] = in[l];
-        out[l] = in[i];
-      } else {
-        out[i] = in[i];
-        out[l] = in[l];
-      }
+      bool dir = (i & K) == 0;
+      bool do_swap = (in[i] > in[l]) ^ dir;
+      out[i] = do_swap ? in[l] : in[i];
+      out[l] = do_swap ? in[i] : in[l];
     }
   }
 }
