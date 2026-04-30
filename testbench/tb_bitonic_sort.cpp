@@ -68,5 +68,9 @@ int main() {
   else
     std::cout << "\033[31mFAIL\033[0m\n";
 
-  return pass ? 0 : 1;
+    if (pass)
+        std::cout << "PASS" << std::endl;
+    else
+        std::cout << "\033[31mFAIL\033[0m" << std::endl;
+    return pass ? 0 : 1;
 }
