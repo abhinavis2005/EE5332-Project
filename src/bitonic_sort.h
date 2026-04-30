@@ -2,6 +2,7 @@
 #define BITONIC_SORT_H
 
 #include <ap_int.h>
+constexpr int N = 64;
 
 typedef ap_uint<16> data_t;
 
