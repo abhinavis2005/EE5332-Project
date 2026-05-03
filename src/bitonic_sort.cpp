@@ -59,7 +59,7 @@ void bitonic_gen(data_t stages[][N]) {
 }
 
 void bitonic_sort(data_t arr[N]) {
-#pragma HLS INLINE
+#pragma HLS PIPELINE II=1
   constexpr int LogN   = log2(N);
   constexpr int PASSES = LogN * (LogN + 1) / 2;
 
