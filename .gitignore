@@ -1,5 +1,11 @@
 *.bit
 *.hwh
 build/
-**/hls_bitonic_sort
 **/*.log
+
+# HLS output — track only csynth.rpt
+hls/hls_bitonic_sort/
+!hls/hls_bitonic_sort/sol1/
+!hls/hls_bitonic_sort/sol1/syn/
+!hls/hls_bitonic_sort/sol1/syn/report/
+!hls/hls_bitonic_sort/sol1/syn/report/csynth.rpt
