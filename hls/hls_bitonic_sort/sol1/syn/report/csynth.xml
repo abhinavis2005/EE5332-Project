@@ -15,7 +15,7 @@
         <PipelineType>no</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>7.860</EstimatedClockPeriod>
+            <EstimatedClockPeriod>13.682</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
@@ -32,8 +32,8 @@
     <AreaEstimates>
         <Resources>
             <BRAM_18K>0</BRAM_18K>
-            <FF>4373</FF>
-            <LUT>36749</LUT>
+            <FF>39941</FF>
+            <LUT>624298</LUT>
             <DSP>0</DSP>
             <URAM>0</URAM>
         </Resources>
@@ -499,7 +499,15 @@
                     <ModuleName>bitonic_sort</ModuleName>
                     <IsCompInst>true</IsCompInst>
                     <ID>426</ID>
-                    <BindInstances>sub_ln6_fu_2009_p2 sub_ln6_1_fu_2029_p2 add_ln7_fu_2097_p2</BindInstances>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_compare_and_swap_fu_23226</InstName>
+                            <ModuleName>compare_and_swap</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>23226</ID>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>sub_ln6_fu_24001_p2 sub_ln6_1_fu_24021_p2</BindInstances>
                 </Instance>
                 <Instance>
                     <InstName>grp_sort_top_Pipeline_OUTPUT_LOOP_fu_494</InstName>
@@ -569,19 +577,56 @@
             </BindNodes>
         </Module>
         <Module>
+            <Name>compare_and_swap</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>15.00</TargetClockPeriod>
+                    <ClockUncertainty>4.05</ClockUncertainty>
+                    <EstimatedClockPeriod>4.212</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>0</Best-caseLatency>
+                    <Average-caseLatency>0</Average-caseLatency>
+                    <Worst-caseLatency>0</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>0</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>0</FF>
+                    <AVAIL_FF>106400</AVAIL_FF>
+                    <UTIL_FF>0</UTIL_FF>
+                    <LUT>47</LUT>
+                    <AVAIL_LUT>53200</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>280</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>220</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>0</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+        </Module>
+        <Module>
             <Name>bitonic_sort</Name>
             <Loops>
                 <VITIS_LOOP_5_1>
-                    <VITIS_LOOP_6_2>
-                        <VITIS_LOOP_7_3/>
-                    </VITIS_LOOP_6_2>
+                    <VITIS_LOOP_6_2/>
                 </VITIS_LOOP_5_1>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>15.00</TargetClockPeriod>
                     <ClockUncertainty>4.05</ClockUncertainty>
-                    <EstimatedClockPeriod>7.860</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>13.682</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
                     <Best-caseLatency>undef</Best-caseLatency>
@@ -607,30 +652,26 @@
                             <TripCount>undef</TripCount>
                             <Latency>undef</Latency>
                             <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
-                            <IterationLatency>130</IterationLatency>
-                            <PipelineDepth>130</PipelineDepth>
+                            <IterationLatency>
+                                <range>
+                                    <min>65</min>
+                                    <max>93</max>
+                                </range>
+                            </IterationLatency>
+                            <PipelineDepth>65 ~ 93</PipelineDepth>
                             <PipelineType>no</PipelineType>
-                            <VITIS_LOOP_7_3>
-                                <Name>VITIS_LOOP_7_3</Name>
-                                <TripCount>64</TripCount>
-                                <Latency>128</Latency>
-                                <AbsoluteTimeLatency>1.920 us</AbsoluteTimeLatency>
-                                <IterationLatency>2</IterationLatency>
-                                <PipelineDepth>2</PipelineDepth>
-                                <PipelineType>no</PipelineType>
-                            </VITIS_LOOP_7_3>
                         </VITIS_LOOP_6_2>
                     </VITIS_LOOP_5_1>
                 </SummaryOfLoopLatency>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <FF>2229</FF>
+                    <FF>37797</FF>
                     <AVAIL_FF>106400</AVAIL_FF>
-                    <UTIL_FF>2</UTIL_FF>
-                    <LUT>36230</LUT>
+                    <UTIL_FF>35</UTIL_FF>
+                    <LUT>623779</LUT>
                     <AVAIL_LUT>53200</AVAIL_LUT>
-                    <UTIL_LUT>68</UTIL_LUT>
+                    <UTIL_LUT>1172</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>280</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
@@ -643,9 +684,8 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_5_1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln6_fu_2009_p2" SOURCE="../src/bitonic_sort.cpp:6" URAM="0" VARIABLE="sub_ln6"/>
-                <BindNode BINDTYPE="op" BRAM="0" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_5_1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln6_1_fu_2029_p2" SOURCE="../src/bitonic_sort.cpp:6" URAM="0" VARIABLE="sub_ln6_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_5_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln7_fu_2097_p2" SOURCE="../src/bitonic_sort.cpp:7" URAM="0" VARIABLE="add_ln7"/>
+                <BindNode BINDTYPE="op" BRAM="0" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_5_1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln6_fu_24001_p2" SOURCE="../src/bitonic_sort.cpp:6" URAM="0" VARIABLE="sub_ln6"/>
+                <BindNode BINDTYPE="op" BRAM="0" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_5_1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln6_1_fu_24021_p2" SOURCE="../src/bitonic_sort.cpp:6" URAM="0" VARIABLE="sub_ln6_1"/>
             </BindNodes>
         </Module>
         <Module>
@@ -710,7 +750,7 @@
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>15.00</TargetClockPeriod>
                     <ClockUncertainty>4.05</ClockUncertainty>
-                    <EstimatedClockPeriod>7.860</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>13.682</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
                     <Best-caseLatency>undef</Best-caseLatency>
@@ -728,12 +768,12 @@
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>280</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
-                    <FF>4373</FF>
+                    <FF>39941</FF>
                     <AVAIL_FF>106400</AVAIL_FF>
-                    <UTIL_FF>4</UTIL_FF>
-                    <LUT>36749</LUT>
+                    <UTIL_FF>37</UTIL_FF>
+                    <LUT>624298</LUT>
                     <AVAIL_LUT>53200</AVAIL_LUT>
-                    <UTIL_LUT>69</UTIL_LUT>
+                    <UTIL_LUT>1173</UTIL_LUT>
                     <DSP>0</DSP>
                     <AVAIL_DSP>220</AVAIL_DSP>
                     <UTIL_DSP>0</UTIL_DSP>
