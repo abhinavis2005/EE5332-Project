@@ -15,7 +15,6 @@ void sort_top(hls::stream<axis_pkt_t> &in_stream,
 #pragma HLS INTERFACE s_axilite port = return         bundle = control
 
   data_t arr[N];
-#pragma HLS ARRAY_PARTITION variable = arr complete dim = 1
 
   flag_post_dma  = 0;
   flag_post_sort = 0;
